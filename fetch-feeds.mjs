@@ -9,9 +9,9 @@ export const SRC = [
 ["The Times of India","https://timesofindia.indiatimes.com/rssfeeds/296589292.cms","dach","Welt"],
 ["Salonkolumnisten","https://www.salonkolumnisten.com/feed/","dach",""],
 ["Fliegende Bretter","https://fliegende-bretter.blogspot.com/feeds/posts/default?alt=rss","dach",""],
-["WSJ","https://feeds.a.dj.com/rss/RSSWorldNews.rss","dach",""],
+["WSJ",["https://feeds.content.dowjones.io/public/rss/RSSWorldNews","https://feeds.a.dj.com/rss/RSSWorldNews.rss"],"dach",""],
 ["manager magazin","https://www.manager-magazin.de/news/index.rss","dach","Wirtschaft"],
-["Handelsblatt","https://www.handelsblatt.com/contentexport/feed/rss/schlagzeilen","dach","Wirtschaft"],
+["Handelsblatt",["https://www.handelsblatt.com/contentexport/feed/top-themen","https://www.handelsblatt.com/contentexport/feed/rss/schlagzeilen"],"dach","Wirtschaft"],
 ["taz","https://taz.de/rss.xml","dach",""],
 ["Jüdische Allgemeine","https://www.juedische-allgemeine.de/feed/","dach",""],
 ["The New York Times","https://rss.nytimes.com/services/xml/rss/nyt/World.xml","dach",""],
@@ -19,25 +19,25 @@ export const SRC = [
 ["Sport Spiegel","https://www.spiegel.de/sport/index.rss","dach","Sport"],
 ["Sportschau ARD","https://www.sportschau.de/index~rss2.xml","dach","Sport"],
 ["Ruhrbarone","https://www.ruhrbarone.de/feed/","dach",""],
-["20 Minuten","https://www.20min.ch/rss/schweiz","dach","",1],
+["20 Minuten",["https://partner-feeds.20min.ch/rss/20minuten","https://www.20min.ch/rss/rss/20min.xml","https://www.20min.ch/rss/schweiz"],"dach","",1],
 ["Tichys Einblick","https://www.tichyseinblick.de/feed/","kons",""],
-["Achse des Guten","https://www.achgut.com/feed/","kons",""],
+["Achse des Guten",["https://www.achgut.com/rss","https://www.achgut.com/rss.xml","https://www.achgut.com/feed/"],"kons",""],
 ["Cicero Online","https://www.cicero.de/rss.xml","kons",""],
 ["WELT","https://www.welt.de/feeds/latest.rss","dach",""],
-["NZZ","https://www.nzz.ch/feed/","dach","",1],
+["NZZ",["https://www.nzz.ch/recent.rss","https://www.nzz.ch/startseite.rss","https://www.nzz.ch/schweiz.rss","https://www.nzz.ch/feed/"],"dach","",1],
 ["Der Standard","https://www.derstandard.at/rss","dach",""],
 ["Blick","https://www.blick.ch/news/rss.xml","dach","",1],
-["Bild","https://www.bild.de/rssfeeds/rss3-2075.xml","dach",""],
-["Tages-Anzeiger","https://www.tagesanzeiger.ch/rss","dach","",1],
-["ARD","https://www.tagesschau.de/rss2","dach",""],
+["Bild",["https://www.bild.de/feed/alles.xml","https://www.bild.de/rssfeeds/vw-alles/vw-alles-26970192,sort=1,view=rss2.bild.xml","https://www.bild.de/rssfeeds/rss3-2075.xml"],"dach",""],
+["Tages-Anzeiger",["https://www.tagesanzeiger.ch/rss.html","https://www.tagesanzeiger.ch/schweiz/rss.html","https://www.tagesanzeiger.ch/rss"],"dach","",1],
+["ARD",["https://www.tagesschau.de/index~rss2.xml","https://www.tagesschau.de/inland/index~rss2.xml","https://www.tagesschau.de/rss2"],"dach",""],
 ["ZDF","https://www.zdf.de/rss/zdf/nachrichten","dach",""],
-["SRF","https://www.srf.ch/news/bnf/rss","dach","",1],
-["Stern","https://www.stern.de/feed/standard.xml","dach",""],
-["Tagesspiegel","https://www.tagesspiegel.de/contentexport/feed/homepage","dach",""],
-["Aargauer Zeitung","https://www.aargauerzeitung.ch/rss","dach","",1],
-["The Telegraph","https://www.telegraph.co.uk/news/rss.xml","intl",""],
+["SRF",["https://www.srf.ch/news/bnf/rss/1646","https://www.srf.ch/news/bnf/rss/1890","https://www.srf.ch/news/bnf/rss"],"dach","",1],
+["Stern",["https://www.stern.de/feed/standard/alle-nachrichten/","https://www.stern.de/feed/standard/politik/","https://www.stern.de/feed/standard.xml"],"dach",""],
+["Tagesspiegel",["https://www.tagesspiegel.de/contentexport/feed/home","https://www.tagesspiegel.de/contentexport/feed/politik","https://www.tagesspiegel.de/contentexport/feed/homepage"],"dach",""],
+["Aargauer Zeitung",["https://www.aargauerzeitung.ch/aargau.rss","https://www.aargauerzeitung.ch/schweiz.rss","https://www.aargauerzeitung.ch/rss"],"dach","",1],
+["The Telegraph",["https://www.telegraph.co.uk/rss.xml","https://www.telegraph.co.uk/news/rss.xml"],"intl",""],
 ["The American Conservative","https://www.theamericanconservative.com/feed/","intl",""],
-["Fox News","https://feeds.foxnews.com/fox-news/rss.xml","intl",""]
+["Fox News",["https://moxie.foxnews.com/google-publisher/latest.xml","https://moxie.foxnews.com/feedburner/latest.xml","https://feeds.foxnews.com/fox-news/rss.xml"],"intl",""]
 ];
 const KW = [
 ["Kriege",/krieg|ukraine|gaza|westjordan|israel|hamas|hisbollah|russland|moskau|kiew|militär|armee|waffenruhe|offensive|iran|rakete|drohnen|\bwar\b|army|missile|troops|ceasefire|hostage|invasion/i],
@@ -81,14 +81,19 @@ async function main() {
   let idx = 0;
   await Promise.all(Array.from({ length: PARALLEL }, async () => {
     while (idx < SRC.length) {
-      const s = SRC[idx++];
-      try {
-        const r = await fetch(s[1], { headers: { "User-Agent": "Mozilla/5.0 (compatible; PalgoaTicker/1.0)", Accept: "application/rss+xml, application/xml, text/xml, */*" }, signal: AbortSignal.timeout(TIMEOUT_MS), redirect: "follow" });
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        const items = parseFeed(await r.text(), s);
-        if (!items.length) throw new Error("keine aktuellen Meldungen gefunden");
-        fresh[s[0]] = items;
-      } catch (e) { errors[s[0]] = String(e.message || e); }
+      const s = SRC[idx++], urls = [].concat(s[1]), fails = [];
+      for (const u of urls) {
+        try {
+          const r = await fetch(u, { headers: { "User-Agent": "Mozilla/5.0 (compatible; PalgoaTicker/1.0)", Accept: "application/rss+xml, application/xml, text/xml, */*" }, signal: AbortSignal.timeout(TIMEOUT_MS), redirect: "follow" });
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          const items = parseFeed(await r.text(), s);
+          if (!items.length) throw new Error("keine aktuellen Meldungen gefunden");
+          fresh[s[0]] = items;
+          if (u !== urls[0]) console.log(` OK über Alternative: ${s[0]} - ${u}`);
+          break;
+        } catch (e) { fails.push(String(e.message || e)); }
+      }
+      if (!fresh[s[0]]) errors[s[0]] = fails.join(" | ");
     }
   }));
   const ok = Object.keys(fresh).length;
