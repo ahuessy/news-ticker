@@ -1,0 +1,28 @@
+name: Feeds aktualisieren
+on:
+  schedule:
+    - cron: "*/20 * * * *"   # alle 20 Minuten (GitHub kann sich um einige Minuten verspäten)
+  workflow_dispatch:          # zusätzlich manuell startbar
+permissions:
+  contents: write
+concurrency:
+  group: feeds
+  cancel-in-progress: true
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node fetch-feeds.mjs
+      - name: news.json speichern
+        run: |
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git add news.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Feeds aktualisiert"
+            git push
+          fi
