@@ -39,6 +39,10 @@ export const SRC = [
 ["The American Conservative","https://www.theamericanconservative.com/feed/","intl",""],
 ["Fox News",["https://moxie.foxnews.com/google-publisher/latest.xml","https://moxie.foxnews.com/feedburner/latest.xml","https://feeds.foxnews.com/fox-news/rss.xml"],"intl",""]
 ];
+// Meldungen, die nicht angezeigt werden sollen: [Quelle (oder null = alle Quellen), Muster im Titel]
+const BLOCK = [
+  ["ZDF", /Nachrichtenstudio|Pressemitteilungen/i],
+];
 const KW = [
 ["Kriege",/krieg|ukraine|gaza|westjordan|israel|hamas|hisbollah|russland|moskau|kiew|militär|armee|waffenruhe|offensive|iran|rakete|drohnen|\bwar\b|army|missile|troops|ceasefire|hostage|invasion/i],
 ["Wirtschaft",/wirtschaft|börse|aktie|dax|zins|inflation|unternehmen|konzern|insolvenz|zoll|zölle|handel|markt|bank|konjunktur|arbeitsmarkt|economy|stocks|market|tariff|trade|earnings/i],
@@ -67,6 +71,7 @@ export function parseFeed(xml, s, now = Date.now()) {
     link = safeUrl(link);
     const title = clean(tagRaw(n, "title"));
     const date = new Date(clean(tagRaw(n, "pubDate") || tagRaw(n, "dc:date") || tagRaw(n, "published") || tagRaw(n, "updated")));
+    if (BLOCK.some(([q, re]) => (!q || q === s[0]) && re.test(title))) continue;
     if (!title || !link || isNaN(date) || now - date > MAX_AGE_DAYS * 864e5 || date - now > 864e5) continue;
     let desc = clean(tagRaw(n, "description") || tagRaw(n, "summary") || tagRaw(n, "content:encoded"), 240);
     if (desc === title) desc = "";
@@ -107,6 +112,6 @@ async function main() {
     items.push(...list);
   }
   items.sort((a, b) => b.date.localeCompare(a.date));
-  writeFileSync("news.json", JSON.stringify({ updated: new Date().toISOString(), errors, items: items.slice(0, MAX_ITEMS) }));
+  writeFileSync("news.json", JSON.stringify({ updated: new Date().toISOString(), sources: SRC.map(s => [s[0], s[2], s[4] ? 1 : 0]), errors, items: items.slice(0, MAX_ITEMS) }));
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) main();
